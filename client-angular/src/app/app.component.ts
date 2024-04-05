@@ -1,19 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http'; //HTTP CLIENT
+import { Cd, Vinili } from 'models/model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  results: string[] | undefined;
-// Inject HttpClient into your component or service.
-    constructor(private http: HttpClient) {}
-    ngOnInit(): void {
-// Make the HTTP request:
-      this.http.get('https://3000-arifmehmoon-gestionepro-qgiq25p5gek.ws-eu110.gitpod.io/api').subscribe(data => {
-// Read the result field from the JSON response.
-        this.results = data['results'];
-      });
-    }
+  [x: string]: any;
+  cd: Cd[];
+  vinili: Vinili[];
+  
+  
+  constructor(private http: HttpClient) {}
+  ngOnInit(): void {
+ 
+    this.http.get('https://3000-arifmehmoona-getion-jgynhg2ntnw.ws-eu107.gitpod.io/api').subscribe(data => {
+      this.cd = data['Cd'];
+      this.vinili = data['Vinili'];
+  });
+  }
 }
